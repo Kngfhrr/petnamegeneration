@@ -2,7 +2,7 @@ FROM node:12-slim
 
 WORKDIR /app
 
-COPY package.json package-lock.json  /app/
+COPY package.json  /app/
 
 RUN cd /app && npm set progress=false && npm install
 
