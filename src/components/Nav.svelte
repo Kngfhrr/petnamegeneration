@@ -62,6 +62,11 @@
   .is-info {
     background: #222222;
   }
+  @media screen and (max-width: 768px) { 
+  .navbar {
+    min-height: 3.25rem !important;
+  }
+  }
   .navbar {
     min-height: 5.25rem;
   }

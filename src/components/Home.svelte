@@ -1,8 +1,8 @@
 <script>
-
-import ColorChagin from "./ColorChagin.svelte"
-import { fly } from 'svelte/transition'
-let visible = false;
+  import ColorChagin from './ColorChagin.svelte'
+  import { fly } from 'svelte/transition'
+  let visible = false
+  let loading = false
   let value = 'Male'
   let items = ['Male', 'Female']
 
@@ -10,33 +10,34 @@ let visible = false;
   let category = 'dog'
   let currentName = ''
 
-
   async function getName() {
     try {
+      loading = true
       visible = true
       const res = await fetch('https://api.mypup.io/name', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           category: category.toLowerCase(),
           gender: value.toLowerCase(),
           country: country.toLocaleLowerCase(),
         }),
-      });
-      const resJson = await res.json();
-      currentName = resJson.name;
-  
+      })
+      const resJson = await res.json()
+      currentName = resJson.name
     } catch (error) {
-      visible = false;
-    } 
+      visible = false
+    } finally {
+      loading = false
+    }
   }
 
-function closePopup() {
-  visible = !visible
-}
-
+  function closePopup() {
+    visible = !visible
+    currentName = ''
+  }
 </script>
 
 <svelte:head>
@@ -47,7 +48,7 @@ function closePopup() {
   <div class="hero-body pl-6 with-opacity">
     <div class="container">
       <div>
-      <ColorChagin />
+        <ColorChagin />
       </div>
       <p class="title is-size-1 has-text-light">Find the perfect name <br /> for your pet</p>
 
@@ -65,7 +66,7 @@ function closePopup() {
           <input class="input is-large input0-generation" type="text" placeholder="Enter description" />
         </div>
 
-        <button on:click={getName} style={{zIndex: 0}} class="button is-info is-large">GET NAME</button>
+        <button on:click={getName} style={{ zIndex: 0 }} class="button is-info is-large">GET NAME</button>
       </div>
       <div class="mt-3">
         <span class="has-text-light"
@@ -73,23 +74,62 @@ function closePopup() {
         </span>
 
         {#if visible}
-          <div transition:fly="{{ y: -200, duration: 400 }}" class="generated-name-wrap">
+          <div transition:fly={{ y: -200, duration: 400 }} class="generated-name-wrap">
             <div class="generated-name-msg">
-             
-               <span>Your pet name is: </span>
-               <div class="generated-name">{currentName}</div>
-               <button on:click={closePopup} class="button is-success mt-5">Got it</button>
+              {#if loading}
+              <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+              {:else}
+                <span>Your pet name is: </span>
+                <div class="generated-name">{currentName}</div>
+                <button on:click={closePopup} class="button is-success mt-5">Got it</button>
+              {/if}
             </div>
-           
           </div>
-          {/if}
-        
+        {/if}
       </div>
     </div>
   </div>
 </section>
 
 <style>
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #5FC578;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #5FC578 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
   .with-img {
     background-image: url('/img/dog.jpg');
     background-repeat: no-repeat;
@@ -137,12 +177,10 @@ function closePopup() {
     margin-right: 25px;
   }
   .hero-body {
-    height: 94vh;
+    height: 95vh;
     padding-top: 14%;
   }
 
-  
- 
   .wrap-input-generation {
     width: 100%;
     height: 130px;
@@ -166,15 +204,13 @@ function closePopup() {
     }
     .wrap-input {
       width: 100% !important;
-     
     }
     .wrap-input input {
-       font-size: medium !important;
+      font-size: medium !important;
     }
     .generated-name-wrap {
       margin-top: -400px !important;
     }
-
   }
 
   .input-generation {
@@ -227,14 +263,17 @@ function closePopup() {
     font-size: 22px;
     text-align: center;
     z-index: 0;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+  }
+  .generated-name-msg button {
+    width: 200px;
   }
   .generated-name {
     font-size: 48px;
     margin-top: 25px;
-
   }
   .generated-title {
-    
   }
 </style>
