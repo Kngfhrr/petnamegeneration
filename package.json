@@ -24,7 +24,8 @@
     "jsonwebtoken": "^8.5.1",
     "luxon": "^1.25.0",
     "polka": "next",
-    "sirv": "^1.0.0"
+    "sirv": "^1.0.0",
+    "svelte-select": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

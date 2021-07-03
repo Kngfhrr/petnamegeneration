@@ -45,9 +45,9 @@
 <nav class="navbar is-info is-mobile" role="navigation" aria-label="main navigation">
   <div class="container">
     <div class="navbar-brand">
-      <a class="navbar-item" href="/">
-        {process.env.APP_NAME}
-      </a>
+      <span class="navbar-item">
+       PET NAME GENERATION
+      </span>
       <a role="button" class="navbar-burger burger {isActive ? 'is-active' : undefined}"
          on:click|stopPropagation|preventDefault={toggleNav} aria-label="menu" aria-expanded="false"
          data-target="navMenu">
@@ -59,46 +59,19 @@
     <div id="navMenu" class="navbar-menu {isActive ? 'is-active' : undefined}">
       <div class="navbar-start">
         <a class="navbar-item" class:is-active={segment === 'quote'} href="/quote">
-          Quote
+          How it work
         </a>
       </div>
       <div class="navbar-end">
-        {#if $session.user}
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              {$session.user.username}
-            </a>
-            <div class="navbar-dropdown is-right">
-              <a class="navbar-item" href="/profile/{$session.user.username}">
-                Profile
-              </a>
-              {#if $session.user.role === "admin"}
-                <a class="navbar-item" href="admin">
-                  Admin
-                </a>
-              {/if}
-              <a href="/quote" class="navbar-item">
-                Contact Team LA
-              </a>
-              <hr class="navbar-divider">
-              <a class="navbar-item" on:click|preventDefault={logOut}>
-                Logout
-              </a>
-            </div>
-          </div>
-        {:else}
-          <div class="navbar-item">
-            <div class="buttons">
-              <a href="/register" class="button is-success">
-                <strong>Register</strong>
-              </a>
-              <a href="/login" class="button is-light">
-                Login
-              </a>
-            </div>
-          </div>
-        {/if}
-      </div>
-    </div>
-  </div>
+     
 </nav>
+
+
+<style>
+  .is-info {
+    background: #222222;
+  }
+  .navbar {
+    min-height: 5.25rem;
+  }
+</style>
