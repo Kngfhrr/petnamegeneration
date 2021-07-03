@@ -1,7 +1,5 @@
 <script>
-  import {api} from '@lib/api'
   import {onMount} from 'svelte'
-  import {logout} from '@lib/auth'
   import {stores} from '@sapper/app'
 
   export let segment
@@ -14,13 +12,6 @@
   const {session} = stores()
   const APP_NAME = process.env.APP_NAME
 
-  async function logOut() {
-    const res = await api('POST', 'user/logout')
-    if (res) {
-      await logout()
-      location.href = '/'
-    }
-  }
 
   function toggleNav(){
     isActive = !isActive
