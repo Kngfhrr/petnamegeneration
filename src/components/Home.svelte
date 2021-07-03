@@ -12,17 +12,25 @@ let visible = false;
 
 
   async function getName() {
-    visible = true
-    const res = await fetch('https://api.mypup.io/name', {
-      method: 'POST',
-      body: JSON.stringify({
-        category: category.toLowerCase(),
-        gender: value.toLowerCase(),
-        country: country.toLocaleLowerCase(),
-      }),
-    })
-    currentName = res
+    try {
+      visible = true
+      const res = await fetch('https://api.mypup.io/name', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          category: category.toLowerCase(),
+          gender: value.toLowerCase(),
+          country: country.toLocaleLowerCase(),
+        }),
+      });
+      const resJson = await res.json();
+      currentName = resJson.name;
   
+    } catch (error) {
+      visible = false;
+    } 
   }
 
 function closePopup() {
