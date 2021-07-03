@@ -46,7 +46,7 @@
   <div class="container">
     <div class="navbar-brand">
       <span class="navbar-item">
-       PET NAME GENERATION
+       LOGO HERE
       </span>
       <a role="button" class="navbar-burger burger {isActive ? 'is-active' : undefined}"
          on:click|stopPropagation|preventDefault={toggleNav} aria-label="menu" aria-expanded="false"

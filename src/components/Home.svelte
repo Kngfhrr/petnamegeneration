@@ -1,11 +1,30 @@
 <script>
-
   let value = 'Male'
   let items = ['Male', 'Female']
+
+  let country = 'english'
+  let category = 'dog'
+  let currentName = ''
+
+
+  async function getName() {
+    const res = await fetch('https://api.mypup.io/name', {
+      method: 'POST',
+      body: JSON.stringify({
+        category: category.toLowerCase(),
+        gender: value.toLowerCase(),
+        country: country.toLocaleLowerCase(),
+      }),
+    })
+    currentName = res
+  }
+
+
+
 </script>
 
 <svelte:head>
-  <title>Pet name generation</title>
+  <title>mypup.io</title>
 </svelte:head>
 
 <section class="hero with-img is-light">
@@ -27,12 +46,24 @@
           <input class="input is-large input0-generation" type="text" placeholder="Enter description" />
         </div>
 
-        <button class="button is-info is-large">GET NAME</button>
+        <button on:click={getName} class="button is-info is-large">GET NAME</button>
       </div>
       <div class="mt-3">
-        <span class="has-text-light">Naming your new pet is a big step—so don’t let information overload get you down!
+        <span class="has-text-light"
+          >Naming your new pet is a big step—so don’t let information overload get you down!
         </span>
-    </div>
+
+       
+          <div class="generated-name-wrap">
+            <div class="generated-name-msg">
+               <span>Your pet name is: </span>
+               <div class="generated-name">Rex</div>
+            </div>
+           
+          </div>
+       
+        
+      </div>
     </div>
   </div>
 </section>
@@ -45,7 +76,6 @@
   }
   .with-opacity {
     background-color: rgba(0, 0, 0, 0.4);
-    /* position: absolute; */
     z-index: 1;
   }
   .wrapper {
@@ -68,7 +98,7 @@
     color: #2793da;
   }
   .wrap-select {
-      display: flex;
+    display: flex;
   }
   .spaced {
     padding: 6em 1.5em;
@@ -105,7 +135,6 @@
     outline: none;
     width: 50%;
     font-size: 20px;
-    
   }
   .wrap-input {
     width: 72%;
@@ -132,5 +161,31 @@
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  .generated-name-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  
+  }
+  .generated-name-msg {
+    background: #fff;
+    width: 500px;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    padding: 50px;
+    font-size: 22px;
+    text-align: center;
+  }
+  .generated-name {
+    font-size: 48px;
+    margin-top: 25px;
+
+  }
+  .generated-title {
+    
   }
 </style>
