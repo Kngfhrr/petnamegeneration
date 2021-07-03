@@ -7,6 +7,9 @@
 </footer>
 <style>
     .footer {
-        padding: 20px;
+        padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     }
 </style>

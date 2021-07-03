@@ -37,7 +37,7 @@
   <div class="container">
     <div class="navbar-brand">
       <span class="navbar-item">
-       LOGO HERE
+       MYPUP.IO
       </span>
       <a role="button" class="navbar-burger burger {isActive ? 'is-active' : undefined}"
          on:click|stopPropagation|preventDefault={toggleNav} aria-label="menu" aria-expanded="false"
@@ -47,13 +47,13 @@
         <span aria-hidden="true"></span>
       </a>
     </div>
-    <div id="navMenu" class="navbar-menu {isActive ? 'is-active' : undefined}">
+    <!-- <div id="navMenu" class="navbar-menu {isActive ? 'is-active' : undefined}">
       <div class="navbar-start">
         <a class="navbar-item" class:is-active={segment === 'quote'} href="/quote">
           How it work
         </a>
       </div>
-      <div class="navbar-end">
+      <div class="navbar-end"> -->
      
 </nav>
 

@@ -57,7 +57,7 @@ function closePopup() {
           <input class="input is-large input0-generation" type="text" placeholder="Enter description" />
         </div>
 
-        <button on:click={getName} class="button is-info is-large">GET NAME</button>
+        <button on:click={getName} style={{zIndex: 0}} class="button is-info is-large">GET NAME</button>
       </div>
       <div class="mt-3">
         <span class="has-text-light"
@@ -129,7 +129,7 @@ function closePopup() {
     margin-right: 25px;
   }
   .hero-body {
-    height: 90vh;
+    height: 94vh;
     padding-top: 14%;
   }
 
@@ -151,16 +151,22 @@ function closePopup() {
     .wrap-input-generation {
       flex-direction: column;
       height: 260px;
+      z-index: 0;
     }
     .line {
       display: none;
     }
     .wrap-input {
-      width: 95%;
+      width: 100% !important;
+     
+    }
+    .wrap-input input {
+       font-size: medium !important;
     }
     .generated-name-wrap {
-      margin-top: -600px;
+      margin-top: -400px !important;
     }
+
   }
 
   .input-generation {
@@ -199,7 +205,7 @@ function closePopup() {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: -245px;
   }
   .generated-name-msg {
     background: #fff;
@@ -212,6 +218,8 @@ function closePopup() {
     padding: 50px;
     font-size: 22px;
     text-align: center;
+    z-index: 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
   }
   .generated-name {
     font-size: 48px;

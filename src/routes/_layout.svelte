@@ -13,7 +13,8 @@
 
     <main class="site-content">
         <slot></slot>
+         <Footer/>
     </main>
 
-    <Footer/>
+   
 </div>
