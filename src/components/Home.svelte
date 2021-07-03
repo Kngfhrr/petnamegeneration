@@ -1,7 +1,8 @@
 <script>
-
+  import Fireworks from './fireworks.svelte'
   let value = 'Male'
   let items = ['Male', 'Female']
+  
 </script>
 
 <svelte:head>
@@ -11,6 +12,9 @@
 <section class="hero with-img is-light">
   <div class="hero-body pl-6 with-opacity">
     <div class="container">
+      <div>
+        <Fireworks></Fireworks>
+      </div>
       <p class="title is-size-1 has-text-light">Find the perfect name <br /> for your pet</p>
 
       <div class="wrap-input-generation">
