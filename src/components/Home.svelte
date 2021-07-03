@@ -69,7 +69,7 @@ function closePopup() {
             <div class="generated-name-msg">
              
                <span>Your pet name is: </span>
-               <div class="generated-name">Rex</div>
+               <div class="generated-name">{currentName}</div>
                <button on:click={closePopup} class="button is-success mt-5">Got it</button>
             </div>
            
