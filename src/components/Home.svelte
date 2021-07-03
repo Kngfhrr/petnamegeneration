@@ -1,7 +1,8 @@
 <script>
 
 import ColorChagin from "./ColorChagin.svelte"
-
+import { fly } from 'svelte/transition'
+let visible = false;
   let value = 'Male'
   let items = ['Male', 'Female']
 
@@ -11,6 +12,7 @@ import ColorChagin from "./ColorChagin.svelte"
 
 
   async function getName() {
+    visible = true
     const res = await fetch('https://api.mypup.io/name', {
       method: 'POST',
       body: JSON.stringify({
@@ -20,9 +22,12 @@ import ColorChagin from "./ColorChagin.svelte"
       }),
     })
     currentName = res
+  
   }
 
-
+function closePopup() {
+  visible = !visible
+}
 
 </script>
 
@@ -59,17 +64,17 @@ import ColorChagin from "./ColorChagin.svelte"
           >Naming your new pet is a big step—so don’t let information overload get you down!
         </span>
 
-       
-          <div class="generated-name-wrap">
+        {#if visible}
+          <div transition:fly="{{ y: -200, duration: 400 }}" class="generated-name-wrap">
             <div class="generated-name-msg">
              
                <span>Your pet name is: </span>
                <div class="generated-name">Rex</div>
-         
+               <button on:click={closePopup} class="button is-success mt-5">Got it</button>
             </div>
            
           </div>
-       
+          {/if}
         
       </div>
     </div>
@@ -127,6 +132,9 @@ import ColorChagin from "./ColorChagin.svelte"
     height: 90vh;
     padding-top: 14%;
   }
+
+  
+ 
   .wrap-input-generation {
     width: 100%;
     height: 130px;
@@ -138,6 +146,23 @@ import ColorChagin from "./ColorChagin.svelte"
     align-items: center;
     /* max-height: max-content; */
   }
+
+  @media screen and (max-width: 768px) {
+    .wrap-input-generation {
+      flex-direction: column;
+      height: 260px;
+    }
+    .line {
+      display: none;
+    }
+    .wrap-input {
+      width: 95%;
+    }
+    .generated-name-wrap {
+      margin-top: -600px;
+    }
+  }
+
   .input-generation {
     border: none;
     outline: none;
@@ -174,7 +199,7 @@ import ColorChagin from "./ColorChagin.svelte"
     width: 100%;
     display: flex;
     justify-content: center;
-  
+    margin-top: 30px;
   }
   .generated-name-msg {
     background: #fff;
