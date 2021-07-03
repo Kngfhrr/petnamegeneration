@@ -1,5 +1,4 @@
 <script>
-    import {fade} from 'svelte/transition';
     import {createEventDispatcher, onMount} from "svelte";
     export let message;
     export let messageType;
