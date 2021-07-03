@@ -43,7 +43,7 @@
 
 <style>
   .with-img {
-    background-image: url('https://www.diana-petfood.com/fileadmin/diana-pet-food/news/Press_Release/diana-pet-food-website-odalia-press-release-2020-HEADER.jpg');
+    background-image: url('/img/dog.jpg');
     background-repeat: no-repeat;
     background-size: cover;
   }
