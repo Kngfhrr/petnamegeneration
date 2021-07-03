@@ -1,4 +1,7 @@
 <script>
+
+import ColorChagin from "./ColorChagin.svelte"
+
   let value = 'Male'
   let items = ['Male', 'Female']
 
@@ -30,6 +33,9 @@
 <section class="hero with-img is-light">
   <div class="hero-body pl-6 with-opacity">
     <div class="container">
+      <div>
+      <ColorChagin />
+      </div>
       <p class="title is-size-1 has-text-light">Find the perfect name <br /> for your pet</p>
 
       <div class="wrap-input-generation">
@@ -56,8 +62,10 @@
        
           <div class="generated-name-wrap">
             <div class="generated-name-msg">
+             
                <span>Your pet name is: </span>
                <div class="generated-name">Rex</div>
+         
             </div>
            
           </div>
