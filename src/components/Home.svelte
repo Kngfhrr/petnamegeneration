@@ -8,21 +8,19 @@
   import { onMount } from 'svelte';
   import { goto } from '@sapper/app';
   let currentConfig = config[animal] ? config[animal] : config['dog'];
-  let currentText = texts[language] ? texts[language] : texts['en'];
-
+  let currentText = texts[language] ? texts[language] : texts['en']
+  let thisImage;
 
   onMount(async () => {
-    function initImages() {
-        var imgDefer = document.getElementsByTagName('img');
-        for (var i=0; i<imgDefer.length; i++) {
-            if(imgDefer[i].getAttribute('data-src')) {
-                imgDefer[i].setAttribute('src',imgDefer[i].getAttribute('data-src'));
-                imgDefer[i].style.filter = 'blur(0)';
-            }
-        }
+    if (thisImage.complete) {
+      thisImage.setAttribute('src',thisImage.getAttribute('data-src'));
+      thisImage.style.filter = 'blur(0)';
     }
-    window.onload = initImages;
-    console.log(window)
+    thisImage.onload = () => {
+      thisImage.setAttribute('src',thisImage.getAttribute('data-src'));
+      thisImage.style.filter = 'blur(0)';
+      thisImage.onload = null;
+    }
     if (!texts[language]) {
       goto('/')
     }
@@ -77,7 +75,7 @@
 </svelte:head>
 
 <section class="hero with-img is-light" >
-  <img data-src="{currentConfig.bgImage}" src="{currentConfig.bgImageLow}" alt="backround" class="background-img">
+  <img bind:this={thisImage} data-src="{currentConfig.bgImage}" src="{currentConfig.bgImageLow}" alt="backround" class="background-img">
   <div class="hero-body pl-6 with-opacity">
     <div class="container">
       <div>
@@ -339,7 +337,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: 2s;
+    transition: 1.5s;
     filter: blur(0.5rem);
     position: absolute;
     z-index: 0;
