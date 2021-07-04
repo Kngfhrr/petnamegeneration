@@ -50,7 +50,7 @@
       <div>
         <ColorChagin />
       </div>
-      <p class="title is-size-1 has-text-light">Find the perfect name <br /> for your pet</p>
+      <h1 class="title is-size-1 has-text-light">Find the perfect name <br /> for your pet</h1>
 
       <div class="wrap-input-generation">
         <div class="wrap-select">
@@ -69,9 +69,9 @@
         <button on:click={getName} style={{ zIndex: 0 }} class="button is-info is-large">GET NAME</button>
       </div>
       <div class="mt-3">
-        <span class="has-text-light"
+        <h2 class="has-text-light"
           >Naming your new pet is a big step—so don’t let information overload get you down!
-        </span>
+      </h2>
 
         {#if visible}
           <div transition:fly={{ y: -200, duration: 400 }} class="generated-name-wrap">
