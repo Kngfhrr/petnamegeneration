@@ -12,6 +12,17 @@
   let currentText = texts[language] ? texts[language] : texts['en']
   
   onMount(async () => {
+    function initImages() {
+        var imgDefer = document.getElementsByTagName('img');
+        for (var i=0; i<imgDefer.length; i++) {
+            if(imgDefer[i].getAttribute('data-src')) {
+                imgDefer[i].setAttribute('src',imgDefer[i].getAttribute('data-src'));
+                imgDefer[i].style.filter = 'blur(0)';
+            }
+        }
+    }
+    window.onload = initImages;
+    console.log(window)
     if (!texts[language]) {
       goto('/')
     }
@@ -71,7 +82,8 @@
   <title>mypup.io</title>
 </svelte:head>
 
-<section class="hero with-img is-light" style="background-image: url({currentConfig.bgImage})">
+<section class="hero with-img is-light" >
+  <img data-src="{currentConfig.bgImage}" src="{currentConfig.bgImageLow}" alt="backround" class="background-img">
   <div class="hero-body pl-6 with-opacity">
     <div class="container">
       <h1 class="title is-size-1 has-text-light transition-text">
@@ -318,7 +330,17 @@
     }
   }
 
+  .background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 2s;
+    filter: blur(0.5rem);
+    position: absolute;
+    z-index: 0;
+  }
   .with-img {
+    position: relative;
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -379,6 +401,9 @@
     align-items: center;
     position: relative;
     animation: slide-input 1s;
+    box-shadow: 9px 11px 32px 1px rgba(0,0,0,0.65);
+    -webkit-box-shadow: 9px 11px 32px 1px rgba(0,0,0,0.65);
+    -moz-box-shadow: 9px 11px 32px 1px rgba(0,0,0,0.65);
   }
   @keyframes slide-input {
     from {
