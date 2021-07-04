@@ -4,24 +4,24 @@
   import { config } from '../animals.config'
   import texts from '../texts'
   import ColorChagin from './ColorChagin.svelte'
-  import Explosion from "./explosion.svelte"
+  import Explosion from './explosion.svelte'
   import { fly } from 'svelte/transition'
   import { onMount } from 'svelte'
   import { goto } from '@sapper/app'
   let currentConfig = config[animal] ? config[animal] : config['dog']
   let currentText = texts[language] ? texts[language] : texts['en']
-  
+
   onMount(async () => {
     function initImages() {
-        var imgDefer = document.getElementsByTagName('img');
-        for (var i=0; i<imgDefer.length; i++) {
-            if(imgDefer[i].getAttribute('data-src')) {
-                imgDefer[i].setAttribute('src',imgDefer[i].getAttribute('data-src'));
-                imgDefer[i].style.filter = 'blur(0)';
-            }
+      var imgDefer = document.getElementsByTagName('img')
+      for (var i = 0; i < imgDefer.length; i++) {
+        if (imgDefer[i].getAttribute('data-src')) {
+          imgDefer[i].setAttribute('src', imgDefer[i].getAttribute('data-src'))
+          imgDefer[i].style.filter = 'blur(0)'
         }
+      }
     }
-    window.onload = initImages;
+    window.onload = initImages
     console.log(window)
     if (!texts[language]) {
       goto('/')
@@ -70,20 +70,14 @@
     visible = !visible
     currentName = ''
   }
-
-
-
-
-
-
 </script>
 
 <svelte:head>
   <title>mypup.io</title>
 </svelte:head>
 
-<section class="hero with-img is-light" >
-  <img data-src="{currentConfig.bgImage}" src="{currentConfig.bgImageLow}" alt="backround" class="background-img">
+<section class="hero with-img is-light">
+  <img data-src={currentConfig.bgImage} src={currentConfig.bgImageLow} alt="backround" class="background-img" />
   <div class="hero-body pl-6 with-opacity">
     <div class="container">
       <h1 class="title is-size-1 has-text-light transition-text">
@@ -91,7 +85,7 @@
         {currentText.title[1]}
         {currentConfig.displayName[language]}
       </h1>
-      
+
       <div class="wrap-input-generation">
         <div class="wrap-select">
           <select class="custom-select" bind:value>
@@ -136,8 +130,8 @@
                   <li />
                   <li />
                 </ul>
-              <Explosion />
                 <span>{currentText.nameModalTitle}</span>
+                <!-- <Explosion /> -->
                 <div class="generated-name">{currentName}</div>
                 <button on:click={closePopup} class="button is-success mt-5">{currentText.nameModalButton}</button>
               {/if}
@@ -150,7 +144,6 @@
 </section>
 
 <style>
-
   .context {
     /* width: 100%; */
     /* position: absolute; */
@@ -168,6 +161,7 @@
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
     /* width: 100%; */
     height: 100vh;
+    /* position: relative; */
   }
 
   .circles {
@@ -401,9 +395,9 @@
     align-items: center;
     position: relative;
     animation: slide-input 1s;
-    box-shadow: 9px 11px 32px 1px rgba(0,0,0,0.65);
-    -webkit-box-shadow: 9px 11px 32px 1px rgba(0,0,0,0.65);
-    -moz-box-shadow: 9px 11px 32px 1px rgba(0,0,0,0.65);
+    box-shadow: 9px 11px 32px 1px rgba(0, 0, 0, 0.65);
+    -webkit-box-shadow: 9px 11px 32px 1px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 9px 11px 32px 1px rgba(0, 0, 0, 0.65);
   }
   @keyframes slide-input {
     from {

@@ -36,9 +36,9 @@
 <nav class="navbar is-info is-mobile" role="navigation" aria-label="main navigation">
   <div class="container">
     <div class="navbar-brand">
-      <span class="navbar-item">
-       MYPUP.IO
-      </span>
+      <!-- <span class="navbar-item"> -->
+       <img class="logo" src="../img/logo.png" alt=""/>
+      <!-- </span> -->
       <a role="button" class="navbar-burger burger {isActive ? 'is-active' : undefined}"
          on:click|stopPropagation|preventDefault={toggleNav} aria-label="menu" aria-expanded="false"
          data-target="navMenu">
@@ -64,10 +64,23 @@
   }
   @media screen and (max-width: 768px) { 
   .navbar {
-    min-height: 3.25rem !important;
+    height: 3.25rem !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .logo {
+    height: 50px !important;
   }
   }
   .navbar {
-    min-height: 5.25rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
+  .logo {
+    height: 60px;
+  }
+
 </style>
