@@ -1,6 +1,18 @@
 <script>
+  export let animal = 'dog';
+  import { config } from '../animals.config';
   import ColorChagin from './ColorChagin.svelte'
   import { fly } from 'svelte/transition'
+  import { onMount } from 'svelte';
+  import { goto } from '@sapper/app';
+  let currentConfig = config[animal] ? config[animal] : config['dog'];
+
+  onMount(async () => {
+    currentConfig = config[animal];
+      if (!currentConfig) {
+        goto('/')
+      }
+  });
   let visible = false
   let loading = false
   let value = 'Male'
@@ -44,13 +56,13 @@
   <title>mypup.io</title>
 </svelte:head>
 
-<section class="hero with-img is-light">
+<section class="hero with-img is-light" style="background-image: url({currentConfig.bgImage})">
   <div class="hero-body pl-6 with-opacity">
     <div class="container">
       <div>
         <ColorChagin />
       </div>
-      <h1 class="title is-size-1 has-text-light">Find the perfect name <br /> for your pet</h1>
+      <h1 class="title is-size-1 has-text-light">Find the perfect name <br /> for your presious {currentConfig.displayName}</h1>
 
       <div class="wrap-input-generation">
         <div class="wrap-select">
@@ -131,7 +143,6 @@
 
 
   .with-img {
-    background-image: url('/img/dog.jpg');
     background-repeat: no-repeat;
     background-size: cover;
   }
