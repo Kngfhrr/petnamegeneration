@@ -1,24 +1,33 @@
 <script>
   export let animal = 'dog';
+  export let language = 'en';
   import { config } from '../animals.config';
+  import texts from '../texts';
   import ColorChagin from './ColorChagin.svelte'
   import { fly } from 'svelte/transition'
   import { onMount } from 'svelte';
   import { goto } from '@sapper/app';
   let currentConfig = config[animal] ? config[animal] : config['dog'];
+  let currentText = texts[language] ? texts[language] : texts['en'];
+
 
   onMount(async () => {
-    currentConfig = config[animal];
-      if (!currentConfig) {
-        goto('/')
-      }
+    if (!texts[language]) {
+      goto('/')
+    }
+    if (!config[animal]) {
+      goto('/')
+    }
   });
+  let value;
   let visible = false
   let loading = false
-  let value = 'Male'
-  let items = ['Male', 'Female']
-
-  let country = 'english'
+  let genderList = {
+    0: 'male',
+    1: 'female'
+  };
+  let selectedGender = 0;
+  let genders = ['Male', 'Female']  
   let category = 'dog'
   let currentName = ''
 
@@ -33,8 +42,8 @@
         },
         body: JSON.stringify({
           category: category.toLowerCase(),
-          gender: value.toLowerCase(),
-          country: country.toLocaleLowerCase(),
+          gender: genderList[value],
+          language,
         }),
       })
       const resJson = await res.json()
@@ -62,27 +71,27 @@
       <div>
         <ColorChagin />
       </div>
-      <h1 class="title is-size-1 has-text-light">Find the perfect name <br /> for your presious {currentConfig.displayName}</h1>
+      <h1 class="title is-size-1 has-text-light">{currentText.title[0]} <br/> {currentText.title[1]} {currentConfig.displayName[language]}</h1>
 
       <div class="wrap-input-generation">
         <div class="wrap-select">
           <select class="custom-select" bind:value>
-            {#each items as item}
-              <option value={item}>{item}</option>
+            {#each currentText.genderSelect as gender}
+              <option value={currentText.genderSelect.findIndex((gen) => gen === gender)}>{gender}</option>
             {/each}
           </select>
           <div class="line" />
         </div>
 
         <div class="wrap-input">
-          <input class="input is-large input0-generation" type="text" placeholder="Enter description" />
+          <input class="input is-large input0-generation" type="text" placeholder={currentText.inputPlaceholder} />
         </div>
 
-        <button on:click={getName} style={{ zIndex: 0 }} class="button is-info is-large">GET NAME</button>
+        <button on:click={getName} style={{ zIndex: 0 }} class="button is-info is-large">{currentText.submitButton}</button>
       </div>
       <div class="mt-3">
         <h2 class="has-text-light"
-          >Naming your new pet is a big step—so don’t let information overload get you down!
+          >{currentText.subtitle}
       </h2>
 
         {#if visible}
@@ -91,9 +100,9 @@
               {#if loading}
               <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
               {:else}
-                <span>Your pet name is: </span>
+                <span>{currentText.nameModalTitle}</span>
                 <div class="generated-name">{currentName}</div>
-                <button on:click={closePopup} class="button is-success mt-5">Got it</button>
+                <button on:click={closePopup} class="button is-success mt-5">{currentText.nameModalButton}</button>
               {/if}
             </div>
           </div>
