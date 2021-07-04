@@ -71,7 +71,7 @@
       <div>
         <ColorChagin />
       </div>
-      <h1 class="title is-size-1 has-text-light">{currentText.title[0]} <br/> {currentText.title[1]} {currentConfig.displayName[language]}</h1>
+      <h1 class="title is-size-1 has-text-light transition-text">{currentText.title[0]} <br/> {currentText.title[1]} {currentConfig.displayName[language]}</h1>
 
       <div class="wrap-input-generation">
         <div class="wrap-select">
@@ -90,7 +90,7 @@
         <button on:click={getName} style={{ zIndex: 0 }} class="button is-info is-large">{currentText.submitButton}</button>
       </div>
       <div class="mt-3">
-        <h2 class="has-text-light"
+        <h2 class="has-text-light transition-text"
           >{currentText.subtitle}
       </h2>
 
@@ -113,6 +113,22 @@
 </section>
 
 <style>
+
+
+.transition-text {
+  animation: slide 1s;
+  position: relative;
+}
+@keyframes slide {
+  from {
+   opacity: 0;
+   left: -300px;
+  }
+  to {
+    opacity: 1;
+    left: 0;
+  }
+}
 
 .lds-ring {
   display: inline-block;
@@ -210,8 +226,21 @@
     background-color: #fff;
     padding: 20px;
     align-items: center;
-    /* max-height: max-content; */
+    position: relative;
+    animation: slide-input 1s;
   }
+  @keyframes slide-input {
+  from {
+   opacity: 0;
+   width: 10%;
+   left: 30%;
+  }
+  to {
+    opacity: 1;
+    left: 0;
+    width: 100%;
+  }
+}
 
   @media screen and (max-width: 768px) {
     .wrap-input-generation {
