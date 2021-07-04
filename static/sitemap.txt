@@ -1,0 +1,10 @@
+https://mypup.io/en/dog
+https://mypup.io/en/cat
+https://mypup.io/en/hamster
+https://mypup.io/en/horse
+https://mypup.io/en/fish
+https://mypup.io/ru/dog
+https://mypup.io/ru/cat
+https://mypup.io/ru/hamster
+https://mypup.io/ru/horse
+https://mypup.io/ru/fish
