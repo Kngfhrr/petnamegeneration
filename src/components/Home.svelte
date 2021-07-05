@@ -1,24 +1,27 @@
 <script>
+  import PetName from "./AnimatedName.svelte";
+
   export let animal = 'dog'
   export let language = 'en'
-  import { config } from '../animals.config'
+  import {config} from '../animals.config'
   import texts from '../texts'
   import ColorChagin from './ColorChagin.svelte'
   import Explosion from './explosion.svelte'
-  import { fly } from 'svelte/transition'
-  import { onMount } from 'svelte';
-  import { goto } from '@sapper/app';
+  import {fly} from 'svelte/transition'
+  import {onMount} from 'svelte';
+  import {goto} from '@sapper/app';
+
   let currentConfig = config[animal] ? config[animal] : config['dog'];
   let currentText = texts[language] ? texts[language] : texts['en']
   let thisImage;
 
   onMount(async () => {
     if (thisImage.complete) {
-      thisImage.setAttribute('src',thisImage.getAttribute('data-src'));
+      thisImage.setAttribute('src', thisImage.getAttribute('data-src'));
       thisImage.style.filter = 'blur(0)';
     }
     thisImage.onload = () => {
-      thisImage.setAttribute('src',thisImage.getAttribute('data-src'));
+      thisImage.setAttribute('src', thisImage.getAttribute('data-src'));
       thisImage.style.filter = 'blur(0)';
       thisImage.onload = null;
     }
@@ -77,9 +80,9 @@
 
 <section class="hero with-img is-light" >
   <img bind:this={thisImage} data-src="{currentConfig.bgImage}" src="{currentConfig.bgImageLow}" alt="backround" class="background-img">
-  <div class="hero-body pl-6 with-opacity">
+  <div class="hero-body p-6 with-opacity">
     <div class="container">
-      <h1 class="title is-size-1 has-text-light transition-text">
+      <h1 class="title is-size-1 has-text-light transition-text mobile-title">
         {currentText.title[0]} <br />
         {currentText.title[1]}
         {currentConfig.displayName[language]}
@@ -130,7 +133,9 @@
                   <li />
                 </ul>
                 <span>{currentText.nameModalTitle}</span>
-                <div class="generated-name">{currentName}</div>
+                <div id="pet-name" data-id="{currentName}" class="generated-name">
+                  <PetName />
+                </div>
                 <button on:click={closePopup} class="button is-success mt-5">{currentText.nameModalButton}</button>
               {/if}
             </div>
@@ -164,7 +169,7 @@
 
   .circles {
     position: absolute;
-    bottom: 100px;
+    bottom: 150px;
     left: 0;
     width: 100%;
     height: 100vh;
@@ -428,6 +433,17 @@
     .generated-name-wrap {
       margin-top: -400px !important;
     }
+    .generated-name-msg {
+      width: inherit !important;
+    }
+    .mobile-title {
+      font-size: 34px !important;
+    }
+    .circles {
+      bottom: inherit;
+      width: 100vw;
+      top: 20px;
+    }
   }
 
   .input-generation {
@@ -471,7 +487,7 @@
   .generated-name-msg {
     background: #fff;
     width: 500px;
-    height: 300px;
+    height: auto;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -490,6 +506,7 @@
   .generated-name {
     font-size: 48px;
     margin-top: 25px;
+    /*display: none;*/
   }
   .generated-title {
   }

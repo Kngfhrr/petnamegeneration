@@ -18,7 +18,6 @@
 
   onMount(() => {
     let frame
-
     function loop() {
       frame = requestAnimationFrame(loop)
 
@@ -28,9 +27,12 @@
         return emoji
       })
     }
-    loop() 
-    return () => {cancelAnimationFrame(frame)}
-  })
+    loop()
+   setTimeout(() => {
+      cancelAnimationFrame(frame)
+      confetti = []
+    }, 2000)
+    })
 </script>
 
 {#each confetti as c}
