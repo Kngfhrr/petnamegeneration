@@ -1,11 +1,10 @@
 <script>
-
     import {onMount} from 'svelte';
+    let currentUrlParam
 
     onMount(async () => {
         const currentPet = window.location.href
         const result = /[^/]*$/.exec(currentPet)[0];
-        console.log('res', result)
         currentUrlParam = !result ? 'dog' : result
     })
 
@@ -17,9 +16,8 @@
         {id: 4, name: 'fish',  icon: 'icons/fish.svg'}
     ]
 
-    let currentUrlParam
+
     function setParams(name){
-        console.log('name', name)
         window.location.href = `http://localhost:3000/en/${name}`;
     }
 
@@ -36,7 +34,6 @@
         padding: 10px;
         position: absolute;
         top: 0;
-        /*left: 7%;*/
     }
 
     .icon {
@@ -90,7 +87,6 @@
                 <img class="img-pet" src='../../../img/{pet.icon}' alt={pet.name}/>
             </div>
         </a>
-
     {/each}
 </div>
 
