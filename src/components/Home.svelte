@@ -420,7 +420,7 @@
 
   @media screen and (max-width: 768px) {
     .title {
-      margin-top: 50px;
+      margin-top: 0;
     }
     .wrap-input-generation {
       flex-direction: column;
