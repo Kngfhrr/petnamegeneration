@@ -10,6 +10,7 @@
   import {fly} from 'svelte/transition'
   import {onMount} from 'svelte';
   import {goto} from '@sapper/app';
+  import SelectPet from "./SelectPet.svelte";
 
   let currentConfig = config[animal] ? config[animal] : config['dog'];
   let currentText = texts[language] ? texts[language] : texts['en']
@@ -81,7 +82,9 @@
 <section class="hero with-img is-light" >
   <img bind:this={thisImage} data-src="{currentConfig.bgImage}" src="{currentConfig.bgImageLow}" alt="backround" class="background-img">
   <div class="hero-body p-6 with-opacity">
+    <SelectPet />
     <div class="container">
+
       <h1 class="title is-size-1 has-text-light transition-text mobile-title">
         {currentText.title[0]} <br />
         {currentText.title[1]}
@@ -416,6 +419,9 @@
   }
 
   @media screen and (max-width: 768px) {
+    .title {
+      margin-top: 50px;
+    }
     .wrap-input-generation {
       flex-direction: column;
       height: 260px;
