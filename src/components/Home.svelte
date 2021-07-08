@@ -8,15 +8,26 @@
   import ColorChagin from './ColorChagin.svelte'
   import Explosion from './explosion.svelte'
   import {fly} from 'svelte/transition'
-  import {onMount} from 'svelte';
+  import {onMount, afterUpdate} from 'svelte';
   import {goto} from '@sapper/app';
   import SelectPet from "./SelectPet.svelte";
 
-  let currentConfig = config[animal] ? config[animal] : config['dog'];
-  let currentText = texts[language] ? texts[language] : texts['en']
+  $: currentConfig = config[animal] ? config[animal] : config['dog'];
+
+  $: currentText = texts[language] ? texts[language] : texts['en']
+  
   let thisImage;
 
-  onMount(async () => {
+  let onParamsChanges = (animal, language) => {
+    initImage()
+  }
+
+  $: onParamsChanges(animal, language)
+
+  let initImage = () => {
+    if (!thisImage) {
+      return;
+    }
     if (thisImage.complete) {
       thisImage.setAttribute('src', thisImage.getAttribute('data-src'));
       thisImage.style.filter = 'blur(0)';
@@ -32,6 +43,10 @@
     if (!config[animal]) {
       goto('/')
     }
+  }
+
+  onMount(async () => {
+    initImage()
   })
   let value
   let visible = false
@@ -82,7 +97,7 @@
 <section class="hero with-img is-light" >
   <img bind:this={thisImage} data-src="{currentConfig.bgImage}" src="{currentConfig.bgImageLow}" alt="backround" class="background-img">
   <div class="hero-body p-6 with-opacity">
-    <SelectPet />
+    <SelectPet bind:animal={animal} bind:language={language}/>
     <div class="container">
 
       <h1 class="title is-size-1 has-text-light transition-text mobile-title">

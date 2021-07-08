@@ -1,5 +1,10 @@
 <script>
     import {onMount} from 'svelte';
+    import {goto} from '@sapper/app';
+
+    export let animal = 'dog'
+    export let language = 'en'
+
     let currentUrlParam
 
     onMount(async () => {
@@ -18,7 +23,8 @@
 
 
     function setParams(name){
-        window.location.href = `http://localhost:3000/en/${name}`;
+        animal = name;
+        goto(`/${language}/${name}`);
     }
 
 </script>
@@ -83,7 +89,7 @@
 <div class="pet-menu">
     {#each directories as pet, index }
         <a on:click={()=>setParams(pet.name)}>
-            <div class="icon {(pet.name === currentUrlParam) && `active`}">
+            <div class="icon {(pet.name === animal) && `active`}">
                 <img class="img-pet" src='../../../img/{pet.icon}' alt={pet.name}/>
             </div>
         </a>
