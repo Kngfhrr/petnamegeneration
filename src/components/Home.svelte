@@ -172,7 +172,7 @@
       <p class="description-text">{currentText.descriptionText}</p>
     </div>
 
-      <img class="description-img" src="../../img/description-img.png" alt="pets"/>
+      <img class="description-img" src="../../img/description-img.jpg" alt="pets"/>
 
   </div>
 
