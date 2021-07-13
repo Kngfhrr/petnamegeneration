@@ -169,7 +169,7 @@
 <section class="section-2">
   <div class="section-block">
     <div class="description-text-wrap">
-      <span class="description-text">{currentText.descriptionText}</span>
+      <p class="description-text">{currentText.descriptionText}</p>
     </div>
 
       <img class="description-img" src="../../img/description-img.png" alt="pets"/>
