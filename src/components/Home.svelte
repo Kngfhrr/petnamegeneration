@@ -91,7 +91,7 @@
 </script>
 
 <svelte:head>
-  <title>mypup.io</title>
+  <title>Mypup.io - {currentText.siteTitle}</title>
 </svelte:head>
 
 <section class="hero with-img is-light" >

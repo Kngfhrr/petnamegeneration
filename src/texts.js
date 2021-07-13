@@ -1,5 +1,6 @@
 export default {
     en: {
+        siteTitle: 'Pet name generator',
         title: ['Find the perfect name', 'for'],
         subtitle: 'Naming your new pet is a big step—so don’t let information overload get you down!',
         genderSelect: ['Male', 'Female'],
@@ -10,6 +11,7 @@ export default {
         descriptionText: 'Looking for the perfect name for your pet? Our name generator will do just fine! It is very important to take it wisely, because your new pet will become part of your close-knit family. And we will undoubtedly help with this. Our service has over 1000 names for cats, dogs, horses, fish and hamsters. Just a couple of clicks and we will suggest the perfect name for your new friend. Save yourself from the burdens of thinking and endless search. Entrust it to us!'
     },
     ru: {
+        siteTitle: 'Генератор имен питомцев',
         title: ['Подбери идеальное имя', 'для'],
         subtitle: 'Выбор имени вашему новому питомцу - это большой шаг. Выбирайте с умом :)',
         genderSelect: ['Мальчик', 'Девочка'],
