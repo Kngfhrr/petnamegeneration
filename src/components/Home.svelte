@@ -217,6 +217,7 @@
   }
   .description-img {
     /*border-radius: 10px;*/
+    object-fit: cover;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
     height: 418px;
