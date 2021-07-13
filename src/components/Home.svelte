@@ -160,15 +160,88 @@
           </div>
         {/if}
       </div>
+
     </div>
+
+
   </div>
 </section>
+<section class="section-2">
+  <div class="section-block">
+    <div class="description-text-wrap">
+      <span class="description-text">{currentText.descriptionText}</span>
+    </div>
+
+      <img class="description-img" src="../../img/description-img.png" alt="pets"/>
+
+  </div>
+
+</section>
+
 
 <style>
   .context {
     /* width: 100%; */
     /* position: absolute; */
     top: 50vh;
+  }
+  .section-2 {
+    height: max-content;
+    padding: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    background: #212121;
+    /*flex-wrap: wrap;*/
+    /*opacity: .5;*/
+  }
+  .section-block {
+    display: flex;
+    justify-content: space-between;
+    background: #504e4e91;
+    height: max-content;
+    width: 80%;
+    border-radius: 15px;
+  }
+  .description-text-wrap {
+    padding: 30px;
+    width: 500px;
+    margin-left: 50px;
+  }
+  .description-text {
+
+    font-size: 20px;
+    color: #fff;
+
+  }
+  .description-img {
+    /*border-radius: 10px;*/
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 418px;
+    /*width: inherit;*/
+  }
+
+  @media screen and (max-width: 1175px){
+    .section-block {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 1000px){
+    .section-block {
+      flex-direction: column;
+      height: auto;
+      width: 400px;
+    }
+    .description-text-wrap {
+      width: auto;
+      padding: 30px;
+      margin-left: 0;
+    }
+    .description-img {
+      
+    }
   }
 
   .context h1 {
