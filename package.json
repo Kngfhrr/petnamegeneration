@@ -13,6 +13,7 @@
     "test": "run-p --race dev cy:run"
   },
   "dependencies": {
+    "@smui/card": "^4.2.0",
     "compression": "^1.7.1",
     "cookie-parser": "^1.4.5",
     "cross-env": "^6.0.3",
@@ -24,8 +25,13 @@
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
     "luxon": "^1.25.0",
+    "moment": "^2.29.1",
+    "node-fetch": "^2.6.1",
     "polka": "next",
+    "prettier": "^2.3.2",
     "sirv": "^1.0.0",
+    "svelte-markdown": "^0.1.10",
+    "svelte-routing": "^1.6.0",
     "svelte-select": "^4.2.0"
   },
   "devDependencies": {
@@ -45,5 +51,11 @@
     "rollup-plugin-terser": "^7.0.0",
     "sapper": "^0.28.0",
     "svelte": "^3.17.3"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
   }
 }

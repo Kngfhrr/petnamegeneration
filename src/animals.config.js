@@ -3,7 +3,7 @@ export const config = {
         bgImage: 'https://d23pg4yzvw2sgu.cloudfront.net/dog.jpg',
         bgImageLow: 'https://d23pg4yzvw2sgu.cloudfront.net/dog-2.jpg',
         displayName: {
-            en: 'your presious puppy',
+            en: 'your precious puppy',
             ru: 'своего щеночка'
         },
     },
@@ -11,7 +11,7 @@ export const config = {
         bgImage: 'https://d23pg4yzvw2sgu.cloudfront.net/cat.jpg',
         bgImageLow: 'https://d23pg4yzvw2sgu.cloudfront.net/cat-2.jpg',
         displayName: {
-            en: 'your presious kitty',
+            en: 'your precious kitty',
             ru: 'своего котёнка'
         },
     },
@@ -19,7 +19,7 @@ export const config = {
         bgImage: 'https://d23pg4yzvw2sgu.cloudfront.net/hamster.jpg',
         bgImageLow: 'https://d23pg4yzvw2sgu.cloudfront.net/hamster-2.jpg',
         displayName: {
-            en: 'your presious hamster',
+            en: 'your precious hamster',
             ru: 'своего хомячка'
         },
     },
@@ -27,7 +27,7 @@ export const config = {
         bgImage: 'https://d23pg4yzvw2sgu.cloudfront.net/horse-progressive.jpeg',
         bgImageLow: 'https://d23pg4yzvw2sgu.cloudfront.net/horse-2.jpg',
         displayName: {
-            en: 'your presious horsie',
+            en: 'your precious horsie',
             ru: 'своего жеребёнка'
         },
     },
@@ -35,7 +35,7 @@ export const config = {
         bgImage: 'https://d23pg4yzvw2sgu.cloudfront.net/fish.jpg',
         bgImageLow: 'https://d23pg4yzvw2sgu.cloudfront.net/fish-2.jpg',
         displayName: {
-            en: 'your presious fish',
+            en: 'your precious fish',
             ru: 'своей рыбки'
         },
     }

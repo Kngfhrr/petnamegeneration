@@ -47,14 +47,19 @@
         <span aria-hidden="true"></span>
       </a>
     </div>
-    <!-- <div id="navMenu" class="navbar-menu {isActive ? 'is-active' : undefined}">
+    <div id="navMenu" class="navbar-menu {isActive ? 'is-active' : undefined}">
       <div class="navbar-start">
-        <a class="navbar-item" class:is-active={segment === 'quote'} href="/quote">
-          How it work
+        <a class="navbar-item" class:is-active={segment === 'quote'} href="/">
+          Main
         </a>
       </div>
-      <div class="navbar-end"> -->
-     
+      <div class="navbar-start">
+        <a class="navbar-item" class:is-active={segment === 'quote'} href="/en/blog">
+          Blog
+        </a>
+      </div>
+      <div class="navbar-end">
+
 </nav>
 
 
@@ -62,7 +67,14 @@
   .is-info {
     background: #222222;
   }
-  @media screen and (max-width: 768px) { 
+
+  .navbar-start {
+    margin-right: 30px;
+  }
+  .navbar-menu {
+    margin-left: 50px;
+  }
+  @media screen and (max-width: 768px) {
   .navbar {
     height: 3.25rem !important;
     display: flex;
@@ -81,6 +93,15 @@
   }
   .logo {
     height: 60px;
+  }
+  .navbar-menu {
+    margin-left: 0;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  .navbar-start {
+    display: flex;
+    justify-content: center;
   }
 
 </style>
