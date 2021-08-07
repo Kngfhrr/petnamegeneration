@@ -1,5 +1,5 @@
 <script context="module">
-    import PostDetails from "../../pages/PostDetails.svelte";
+    import PostDetails from "../pages/PostDetails.svelte";
 
     let language;
     let slug;

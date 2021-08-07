@@ -1,12 +1,11 @@
 <script>
+    import marked from 'marked';
     import moment from "moment";
-    import {beforeUpdate, onMount, afterUpdate} from "svelte";
-    import SvelteMarkdown from 'svelte-markdown';
+    import {onMount} from "svelte";
     import {getArticleBySlug, getStrapiMedia} from "../api";
 
     export let slug
     export let language = 'en'
-
 
     let post = {}
 
@@ -49,8 +48,8 @@
                     <time datetime="2016-1-1">{moment(post.created_at).format("MMM Do YY")}</time>
                 </div>
             </div>
-            <img class="mb-4" src="{getStrapiMedia(post.image?.url)}"/>
-            <SvelteMarkdown source={post.content}/>
+            <img class="mb-4" src="{getStrapiMedia(post.image?.url)}" alt='main-img'/>
+            {@html marked(post.content || '')}
         </div>
     </div>
 </div>

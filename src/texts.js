@@ -10,7 +10,11 @@ export default {
         nameModalButton: 'Got it!',
         descriptionText: 'Looking for the perfect name for your pet? Our name generator will do just fine! It is very important to take it wisely, because your new pet will become part of your close-knit family. And we will undoubtedly help with this. Our service has over 1000 names for cats, dogs, horses, fish and hamsters. Just a couple of clicks and we will suggest the perfect name for your new friend. Save yourself from the burdens of thinking and endless search. Entrust it to us!',
         blogTitle: 'PET BLOG',
-        blogSubtitle: 'All about our beloved pets :)'
+        blogSubtitle: 'All about our beloved pets :)',
+        headerButtons: {
+            main: 'Main',
+            blog: 'Blog'
+        }
     },
     ru: {
         siteTitle: 'Генератор имен питомцев',
@@ -23,6 +27,10 @@ export default {
         nameModalButton: 'Ок!',
         descriptionText: 'В поисках идеального имени для Вашего питомца? Наш генератор имён прекрасно с этим справится! \n\n Очень важно отнестись к этому с умом, ведь Ваш новый питомец станет частью Вашей дружной семьи. И мы в этом, несомненно поможем. Наш сервис насчитывает более 1000 имен для кошек, собак, лошадей, рыбок и хомячков. Всего пару кликов и мы предложим идеальное имя для Вашего нового друга. Избавьте себя от тягот раздумий и бесконечного поиска. Доверьте это нам!',
         blogTitle: 'БЛОГ',
-        blogSubtitle: 'Всё о наших любимых питомцах :)'
+        blogSubtitle: 'Всё о наших любимых питомцах :)',
+        headerButtons: {
+            main: 'Главная',
+            blog: 'Блог'
+        }
     }
 }

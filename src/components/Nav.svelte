@@ -1,107 +1,173 @@
 <script>
-  import {onMount} from 'svelte'
-  import {stores} from '@sapper/app'
+  import texts from "../texts";
 
-  export let segment
+  export let language = 'en'
 
-  let isActive = false
-  let message
-  let messageType
-  let links = []
-
-  const {session} = stores()
-  const APP_NAME = process.env.APP_NAME
-
-
-  function toggleNav(){
-    isActive = !isActive
-  }
-
-  onMount(() => {
-    function callback(e) {
-      window.e || e
-      if (e.target.tagName !== 'A') return
-      isActive = !isActive
-    }
-
-    if (document.addEventListener) {
-      document.addEventListener('click', callback, false)
-    } else {
-      document.attachEvent('onclick', callback)
-    }
-  })
+  $: currentText = texts[language] ? texts[language] : texts['en']
 
 </script>
 
-<nav class="navbar is-info is-mobile" role="navigation" aria-label="main navigation">
-  <div class="container">
-    <div class="navbar-brand">
-      <!-- <span class="navbar-item"> -->
-       <img class="logo" src="../img/logo.png" alt=""/>
-      <!-- </span> -->
-      <a role="button" class="navbar-burger burger {isActive ? 'is-active' : undefined}"
-         on:click|stopPropagation|preventDefault={toggleNav} aria-label="menu" aria-expanded="false"
-         data-target="navMenu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-    <div id="navMenu" class="navbar-menu {isActive ? 'is-active' : undefined}">
-      <div class="navbar-start">
-        <a class="navbar-item" class:is-active={segment === 'quote'} href="/">
-          Main
-        </a>
-      </div>
-      <div class="navbar-start">
-        <a class="navbar-item" class:is-active={segment === 'quote'} href="/en/blog">
-          Blog
-        </a>
-      </div>
-      <div class="navbar-end">
-
-</nav>
-
+<header class="header">
+  <img class="logo" src="../img/logo.png" alt=""/>
+  <input class="menu-btn" type="checkbox" id="menu-btn" />
+  <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+  <ul class="menu">
+    <li><a target="_self" href="/{language}/dog">{currentText.headerButtons.main}</a></li>
+    <li><a target="_self" href="/{language}/blog">{currentText.headerButtons.blog}</a></li>
+  </ul>
+</header>
 
 <style>
-  .is-info {
-    background: #222222;
+
+  .header {
+    background-color: #313131;
+    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+    justify-content: space-between;
+    padding: 0 5%;
+  }
+   .logo {
+     height: inherit;
+   }
+  .header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: #fff;
   }
 
-  .navbar-start {
-    margin-right: 30px;
+  .header li a {
+    display: block;
+    padding: 28px !important;
+    text-decoration: none;
+    color: #fff;
+    background-color: #313131;
   }
-  .navbar-menu {
-    margin-left: 50px;
+
+
+  .header li a:hover,
+  .header .menu-btn:hover {
+    background-color: #f4f4f4;
+    color: #0a0a0a;
   }
-  @media screen and (max-width: 768px) {
-  .navbar {
-    height: 3.25rem !important;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+
+  .header li a:checked,
+  .header .menu-btn:current ~ .menu {
+      display: none !important;
   }
-  .logo {
-    height: 50px !important;
+
+  .header .logo {
+    display: block;
+    float: left;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
   }
+
+  /* menu */
+
+  .header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+    position: absolute;
   }
-  .navbar {
-    height: 5rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+
+  /* menu icon */
+
+  .header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 28px 20px;
+    position: relative;
+    user-select: none;
   }
-  .logo {
-    height: 60px;
+
+  .header .menu-icon .navicon {
+    background: #fff;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 18px;
   }
-  .navbar-menu {
-    margin-left: 0;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+
+  .header .menu-icon .navicon:before,
+  .header .menu-icon .navicon:after {
+    background: #fff;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
   }
-  .navbar-start {
-    display: flex;
-    justify-content: center;
+
+  .header .menu-icon .navicon:before {
+    top: 5px;
   }
+
+  .header .menu-icon .navicon:after {
+    top: -5px;
+  }
+
+  /* menu btn */
+
+  .header .menu-btn {
+    display: none;
+  }
+
+  .header .menu-btn:checked ~ .menu {
+    max-height: max-content;
+    /*position: absolute;*/
+    width: 100%;
+    left: 0;
+    top: 80px;
+  }
+
+  .header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+  }
+
+  .header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+  }
+
+  .header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+  }
+
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+  }
+
+  /* 48em = 768px */
+
+  @media (min-width: 48em) {
+    .header li {
+      float: left;
+    }
+    .header li a {
+      padding: 20px 30px;
+    }
+
+    .header .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+      position: inherit;
+    }
+    .header .menu-icon {
+      display: none;
+    }
+  }
+
 
 </style>
