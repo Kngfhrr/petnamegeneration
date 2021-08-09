@@ -1,5 +1,5 @@
 export function getStrapiURL(path) {
-    return `http://localhost:1337${path}`;
+    return `https://api-blog.mypup.io${path}`;
 }
 
 export function getStrapiMedia(url) {
@@ -13,7 +13,7 @@ export function getStrapiMedia(url) {
     }
 
     // Otherwise prepend the URL path with the Strapi URL
-    return `http://localhost:1337${url}`;
+    return `https://api-blog.mypup.io${url}`;
 }
 
 
