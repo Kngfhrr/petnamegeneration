@@ -1,16 +1,14 @@
 <script>
-  import PetName from "./AnimatedName.svelte";
+  import PetName from "../components/AnimatedName.svelte";
 
   export let animal = 'dog'
   export let language = 'en'
   import {config} from '../animals.config'
   import texts from '../texts'
-  import ColorChagin from './ColorChagin.svelte'
-  import Explosion from './explosion.svelte'
   import {fly} from 'svelte/transition'
-  import {onMount, afterUpdate} from 'svelte';
+  import {onMount} from 'svelte';
   import {goto} from '@sapper/app';
-  import SelectPet from "./SelectPet.svelte";
+  import SelectPet from "../components/SelectPet.svelte";
 
   $: currentConfig = config[animal] ? config[animal] : config['dog'];
 
@@ -18,7 +16,7 @@
   
   let thisImage;
 
-  let onParamsChanges = (animal, language) => {
+  let onParamsChanges = () => {
     initImage()
   }
 
@@ -469,7 +467,7 @@
   }
   .line {
     width: 1px;
-    background: rgba(153, 153, 153);
+    background: rgba(153, 153, 153, 1);
     height: 80px;
     margin-left: 40px;
     margin-right: 25px;
