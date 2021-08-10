@@ -16,7 +16,7 @@
 
 .site-content {
   flex: 1;
-  background: #d6d6d6de;
+  background: rgba(194, 194, 194, 0.9);
 }
 
 .box-out {

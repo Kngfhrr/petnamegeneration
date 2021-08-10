@@ -12,7 +12,7 @@ export default {
         blogTitle: 'PET BLOG',
         blogSubtitle: 'All about our beloved pets :)',
         headerButtons: {
-            main: 'Main',
+            main: 'Name generator',
             blog: 'Blog'
         }
     },
@@ -29,7 +29,7 @@ export default {
         blogTitle: 'БЛОГ',
         blogSubtitle: 'Всё о наших любимых питомцах :)',
         headerButtons: {
-            main: 'Главная',
+            main: 'Генератор имен',
             blog: 'Блог'
         }
     }
