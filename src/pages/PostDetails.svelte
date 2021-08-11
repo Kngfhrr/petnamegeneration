@@ -49,18 +49,26 @@
                 </div>
             </div>
             <img class="mb-4" src="{getStrapiMedia(post.image?.url)}" alt='main-img'/>
-            {@html marked(post.content || '')}
+            <div class="marked">
+                {@html marked(post.content || '')}
+            </div>
+
         </div>
     </div>
 </div>
 
 <style>
+    .marked {
+        word-break: break-word;
+    }
+
     .post-title {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
         flex-direction: column;
         margin: 0 25%;
+        line-height: normal;
     }
 
     .post-wrap {
@@ -81,6 +89,7 @@
         padding: 20px;
         margin-top: 50px;
         word-break: break-word;
+        line-height: normal;
     }
 
     .post-title p {

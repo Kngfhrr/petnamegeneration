@@ -4,8 +4,12 @@
 
     let language;
 
+    const regex = new RegExp('ru*|en*')
+    const isPath = (path) => regex.test(path)
+
     export async function preload(page) {
-        language = page.path.slice(1, 3) || 'en'
+        const lang = page.path.slice(1, 3)
+        language = isPath(lang) ? lang : 'en'
     }
 
 </script>

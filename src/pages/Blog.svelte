@@ -44,8 +44,6 @@
                             </div>
                         </div>
                         <div class="content">
-                            {item.content.substring(0, 30)}
-                            <br>
                             <time datetime="2016-1-1">{moment(item.created_at).format("MMM Do YY")}</time>
                         </div>
                     </div>
